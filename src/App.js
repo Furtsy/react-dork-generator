@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const App = () => {
   const [inputValues, setInputValues] = useState({
-    groupTag: '',
-    username: '',
-    inUrl: '',
-    fileExt: '',
-    fileType: '',
+    groupTag: "",
+    username: "",
+    inUrl: "",
+    fileExt: "",
+    fileType: "",
   });
-  const [selectedOption, setSelectedOption] = useState('');
-  const [dork, setDork] = useState('');
-  const [url, setUrl] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
+  const [dork, setDork] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -26,7 +26,7 @@ const App = () => {
   };
 
   const generateDork = () => {
-    let dorkQuery = '';
+    let dorkQuery = "";
 
     for (const key in inputValues) {
       if (inputValues[key]) {
@@ -42,23 +42,28 @@ const App = () => {
   };
 
   const options = [
-    { value: 'site', label: 'Site' },
-    { value: 'intext', label: 'Intext' },
-    { value: 'inurl', label: 'Inurl' },
-    { value: 'ext', label: 'Ext' },
-    { value: 'filetype', label: 'Filetype' },
+    { value: "site", label: "Site" },
+    { value: "intext", label: "Intext" },
+    { value: "inurl", label: "Inurl" },
+    { value: "ext", label: "Ext" },
+    { value: "filetype", label: "Filetype" },
   ];
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Google Dork Generator</h1>
-      <div className="flex flex-col items-center">
-        <div className="flex items-center mb-4">
-          <label className="block font-semibold mr-2">Select Option:</label>
+      <h1 className="text-center text-3xl ">
+        <span className="text-blue-600 font-extrabold pt-12">Google</span> Dork
+        Generator
+      </h1>
+      <div className="flex flex-col items-center pt-24">
+        <div className=" mb-4">
+          <label className="block font-semibold mr-2 text-xl">
+            Select Option:
+          </label>
           <select
             value={selectedOption}
             onChange={handleOptionChange}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 dark:text-black"
+            className="border-2 w-full pt-4 border-blue-600 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-500 dark:text-black"
           >
             <option value="">Select</option>
             {options.map((option) => (
@@ -68,21 +73,24 @@ const App = () => {
             ))}
           </select>
           {selectedOption && (
-            <label className="block font-semibold ml-2">
-              {selectedOption === 'ext' ? 'File Extension' : 'Input'}:
+            <div className="pt-6 pr-6">
+              <label className="block font-semibold ml-2">
+                {selectedOption === "ext" ? "File Extension" : "Input"}:{" "}
+              </label>
               <input
                 type="text"
                 name={selectedOption}
                 value={inputValues[selectedOption]}
                 onChange={handleInputChange}
-                className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500 dark:text-black ml-2"
+                placeholder="https://codare.fun"
+                className="border-2 border-blue-600 w-full px-4 py-3 rounded-lg focus:outline-none focus:border-blue-500 dark:text-black ml-2"
               />
-            </label>
+            </div>
           )}
         </div>
         <button
           onClick={generateDork}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2"
+          className="bg-blue-500 text-white px-4 py-3 rounded-lg "
         >
           Generate Dork
         </button>
@@ -93,7 +101,7 @@ const App = () => {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 underline mt-2"
+          className="text-blue-500 underline mt-2 outline-none"
         >
           Search on Google
         </a>

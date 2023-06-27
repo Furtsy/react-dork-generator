@@ -41,6 +41,19 @@ const App = () => {
     setUrl(`https://www.google.com/search?q=${encodeURIComponent(dorkQuery)}`);
   };
 
+  const resetDork = () => {
+    setInputValues({
+      groupTag: "",
+      username: "",
+      inUrl: "",
+      fileExt: "",
+      fileType: "",
+    });
+    setSelectedOption("");
+    setDork("");
+    setUrl("");
+  };
+
   const options = [
     { value: "site", label: "Site" },
     { value: "intext", label: "Intext" },
@@ -88,23 +101,33 @@ const App = () => {
             </div>
           )}
         </div>
-        <button
-          onClick={generateDork}
-          className="bg-blue-500 text-white px-4 py-3 rounded-lg "
-        >
-          Generate Dork
-        </button>
+        <div className="flex">
+          <button
+            onClick={generateDork}
+            className="bg-blue-500 text-white px-4 py-3 rounded-lg mr-2"
+          >
+            Generate Dork
+          </button>
+          <button
+            onClick={resetDork}
+            className="bg-gray-500 text-white px-4 py-3 rounded-lg"
+          >
+            Reset Dork
+          </button>
+        </div>
       </div>
       <div className="flex flex-col items-center mt-4">
         <h3 className="font-semibold">Dork: {dork}</h3>
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 underline mt-2 outline-none"
-        >
-          Search on Google
-        </a>
+        {dork && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline mt-2 outline-none"
+          >
+            Search on Google
+          </a>
+        )}
       </div>
     </div>
   );
